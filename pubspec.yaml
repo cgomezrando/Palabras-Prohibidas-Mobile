@@ -1,12 +1,8 @@
 name: palabras_prohibidas_mobile
 description: Palabras Prohibidas
 
-# Paquete privado: nunca se publica en pub.dev.
 publish_to: 'none'
 
-# version: <CFBundleShortVersionString>+<CFBundleVersion>
-# En Codemagic el build number se sobreescribe automáticamente
-# (último build de TestFlight + 1), así que solo hay que subir la versión.
 version: 1.0.0+1
 
 environment:
@@ -20,9 +16,6 @@ dependencies:
   flutter_web_plugins:
     sdk: flutter
 
-  # Paquetes usados por la app. Las implementaciones por plataforma
-  # (_android, _ios, _web, _platform_interface...) se resuelven solas;
-  # fijarlas a mano provoca conflictos de versiones al compilar.
   audio_session: 0.2.2
   auto_size_text: 3.0.0
   cached_network_image: 3.4.1

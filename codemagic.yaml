@@ -5,17 +5,14 @@ workflows:
     max_build_duration: 60
 
     integrations:
-      # Nombre de la API key de App Store Connect creada en
-      # Codemagic > Team settings > Integrations > Developer Portal
       app_store_connect: CodemagicASC
 
     environment:
       ios_signing:
         distribution_type: app_store
-        bundle_identifier: com.cgr.PalabrasProhibidasmMobile
+        bundle_identifier: com.cgr.PalabrasProhibidasMobile
       vars:
         BUNDLE_ID: "com.cgr.PalabrasProhibidasmMobile"
-        # ID numérico de la app en App Store Connect (App Information > Apple ID)
         APP_STORE_APPLE_ID: 0000000000
       flutter: stable
       xcode: latest
@@ -32,6 +29,17 @@ workflows:
       - name: Instalar dependencias Flutter
         script: |
           flutter pub get
+
+      - name: Configurar iPhone y orientación vertical
+        script: |
+          PLIST=ios/Runner/Info.plist
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" $PLIST || true
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" $PLIST
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" $PLIST
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations~ipad" $PLIST || true
+          /usr/libexec/PlistBuddy -c "Set :LSRequiresIPhoneOS true" $PLIST
+          /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" $PLIST || true
+          sed -i '' 's/TARGETED_DEVICE_FAMILY = "1,2";/TARGETED_DEVICE_FAMILY = 1;/g' ios/Runner.xcodeproj/project.pbxproj
 
       - name: Generar iconos de la app
         script: |
