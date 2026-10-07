@@ -1,24 +1,96 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<plist version="1.0">
-<dict>
-  <key>CFBundleDevelopmentRegion</key>
-  <string>$(DEVELOPMENT_LANGUAGE)</string>
-  <key>CFBundleExecutable</key>
-  <string>App</string>
-  <key>CFBundleIdentifier</key>
-  <string>io.flutter.flutter.app</string>
-  <key>CFBundleInfoDictionaryVersion</key>
-  <string>6.0</string>
-  <key>CFBundleName</key>
-  <string>App</string>
-  <key>CFBundlePackageType</key>
-  <string>FMWK</string>
-  <key>CFBundleShortVersionString</key>
-  <string>1.0</string>
-  <key>CFBundleSignature</key>
-  <string>????</string>
-  <key>CFBundleVersion</key>
-  <string>1.0</string>
-</dict>
-</plist>
+workflows:
+  ios-iphone-portrait:
+    name: iOS iPhone Portrait Build
+    max_build_duration: 120
+    integrations:
+      app_store_connect: Apple Developer
+    environment:
+      groups:
+        - ios_signing_keys
+      vars:
+        BUNDLE_ID: com.cgr.PalabrasProhibidasMobile
+        P12_PASSWORD: TempBuildPass123
+      flutter: 3.35.4
+      xcode: 26.6
+      cocoapods: default
+
+    scripts:
+      - name: Decode certificate private key
+        script: |
+          echo "$CERTIFICATE_PRIVATE_KEY" | base64 -D > /tmp/certificate_private_key.pem
+
+      - name: Set up keychain
+        script: keychain initialize
+
+      - name: Fetch signing files
+        script: |
+          app-store-connect fetch-signing-files "$BUNDLE_ID" \
+            --type IOS_APP_STORE \
+            --certificate-key "$(cat /tmp/certificate_private_key.pem)" \
+            --p12-password "$P12_PASSWORD" \
+            --create
+
+      - name: Import certificate into keychain
+        script: |
+          keychain add-certificates \
+            --certificate "/Users/builder/Library/Developer/Xcode/UserData/Certificates/*.p12" \
+            --certificate-password "$P12_PASSWORD"
+
+      - name: Set up code signing settings on Xcode project
+        script: xcode-project use-profiles
+
+      - name: Get Flutter packages
+        script: flutter pub get
+
+      - name: Generate app icons
+        script: |
+          mkdir -p ios/Runner/Assets.xcassets/AppIcon.appiconset
+          dart run flutter_launcher_icons
+
+      - name: Force iPhone-only device family
+        script: |
+          sed -i '' -E 's/TARGETED_DEVICE_FAMILY = [^;]+;/TARGETED_DEVICE_FAMILY = 1;/g' ios/Runner.xcodeproj/project.pbxproj
+
+      - name: Set minimum iOS version to 15.0
+        script: |
+          # 1) Deployment target en el proyecto Xcode
+          sed -i '' -E 's/IPHONEOS_DEPLOYMENT_TARGET = [^;]+;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g' ios/Runner.xcodeproj/project.pbxproj
+          # 2) Podfile: fuerza platform :ios, '15.0' al principio
+          PODFILE="ios/Podfile"
+          if [ -f "$PODFILE" ]; then
+            sed -i '' -E "/^[[:space:]]*#?[[:space:]]*platform[[:space:]]*:ios/d" "$PODFILE"
+            printf "platform :ios, '15.0'\n%s" "$(cat "$PODFILE")" > "$PODFILE"
+          fi
+          # 3) App.framework: añade MinimumOSVersion (faltaba -> causaba el rechazo 90360/90530)
+          APPFW="ios/Flutter/AppFrameworkInfo.plist"
+          /usr/libexec/PlistBuddy -c "Delete :MinimumOSVersion" "$APPFW" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :MinimumOSVersion string 15.0" "$APPFW"
+          echo "AppFrameworkInfo.plist:"; plutil -p "$APPFW" | grep -i Minimum || true
+
+      - name: Portrait-only + export compliance
+        script: |
+          PLIST="ios/Runner/Info.plist"
+          /usr/libexec/PlistBuddy -c "Delete :UISupportedInterfaceOrientations" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations array" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Add :UISupportedInterfaceOrientations:0 string UIInterfaceOrientationPortrait" "$PLIST"
+          /usr/libexec/PlistBuddy -c "Delete :ITSAppUsesNonExemptEncryption" "$PLIST" 2>/dev/null || true
+          /usr/libexec/PlistBuddy -c "Add :ITSAppUsesNonExemptEncryption bool false" "$PLIST"
+          plutil -lint "$PLIST"
+
+      - name: Install pods
+        script: find . -name "Podfile" -execdir pod install \;
+
+      - name: Flutter build ipa
+        script: |
+          flutter build ipa --release \
+            --export-options-plist=/Users/builder/export_options.plist
+
+    artifacts:
+      - build/ios/ipa/*.ipa
+      - /tmp/xcodebuild_logs/*.log
+
+    publishing:
+      app_store_connect:
+        auth: integration
+        submit_to_testflight: true
+        submit_to_app_store: false
