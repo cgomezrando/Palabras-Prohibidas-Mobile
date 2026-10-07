@@ -344,541 +344,77 @@ class _WordScreenWidgetState extends State<WordScreenWidget> {
                           (FFMainAxisAlignment.start).flutterValue,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Column(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment:
-                              (FFMainAxisAlignment.start).flutterValue,
+                        Stack(
                           children: [
-                            Padding(
-                              padding: EdgeInsetsDirectional.fromSTEB(
-                                  0.0, 0.0, 0.0, 20.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment:
-                                    (FFMainAxisAlignment.center).flutterValue,
-                                children: [
-                                  if (FFAppState().turnPhase == 'playing')
-                                    Flexible(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            if (FFAppState().CardAnswered ==
-                                                false) {
-                                              if (FFAppState().currentTeam ==
-                                                  1) {
-                                                FFAppState().Team1Score =
-                                                    FFAppState().Team1Score + 1;
-                                                safeSetState(() {});
-                                              } else {
-                                                if (FFAppState().currentTeam ==
-                                                    2) {
-                                                  FFAppState().Team2Score =
-                                                      FFAppState().Team2Score +
-                                                          1;
-                                                  safeSetState(() {});
-                                                } else {
+                            Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment:
+                                  (FFMainAxisAlignment.start).flutterValue,
+                              children: [
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 0.0, 0.0, 20.0),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    mainAxisAlignment:
+                                        (FFMainAxisAlignment.center)
+                                            .flutterValue,
+                                    children: [
+                                      if (FFAppState().turnPhase == 'playing')
+                                        Flexible(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                if (FFAppState().CardAnswered ==
+                                                    false) {
                                                   if (FFAppState()
                                                           .currentTeam ==
-                                                      3) {
-                                                    FFAppState().Team3Score =
+                                                      1) {
+                                                    FFAppState().Team1Score =
                                                         FFAppState()
-                                                                .Team3Score +
+                                                                .Team1Score +
                                                             1;
                                                     safeSetState(() {});
                                                   } else {
                                                     if (FFAppState()
                                                             .currentTeam ==
-                                                        4) {
-                                                      FFAppState().Team4Score =
+                                                        2) {
+                                                      FFAppState().Team2Score =
                                                           FFAppState()
-                                                                  .Team4Score +
+                                                                  .Team2Score +
                                                               1;
                                                       safeSetState(() {});
+                                                    } else {
+                                                      if (FFAppState()
+                                                              .currentTeam ==
+                                                          3) {
+                                                        FFAppState()
+                                                                .Team3Score =
+                                                            FFAppState()
+                                                                    .Team3Score +
+                                                                1;
+                                                        safeSetState(() {});
+                                                      } else {
+                                                        if (FFAppState()
+                                                                .currentTeam ==
+                                                            4) {
+                                                          FFAppState()
+                                                                  .Team4Score =
+                                                              FFAppState()
+                                                                      .Team4Score +
+                                                                  1;
+                                                          safeSetState(() {});
+                                                        }
+                                                      }
                                                     }
                                                   }
-                                                }
-                                              }
-
-                                              FFAppState().turnPhase =
-                                                  'answered';
-                                              safeSetState(() {});
-                                              FFAppState().CardAnswered = true;
-                                              safeSetState(() {});
-                                              _model.playTimerController
-                                                  .onStopTimer();
-                                              if (FFAppState().gameMode == 1) {
-                                                await actions
-                                                    .mostrarVentanaTransicion(
-                                                  context,
-                                                );
-                                              } else {
-                                                await actions
-                                                    .mostrarVentanaTransicionIndividual(
-                                                  context,
-                                                );
-                                              }
-                                            }
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(12.0),
-                                                topRight: Radius.circular(12.0),
-                                                bottomLeft:
-                                                    Radius.circular(12.0),
-                                                bottomRight:
-                                                    Radius.circular(12.0),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              width: 100.0,
-                                              height: 110.0,
-                                              decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 0.0,
-                                                    color: Color(0xFF16A34A),
-                                                    offset: Offset(
-                                                      0.0,
-                                                      7.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    Color(0xFF6EF56F),
-                                                    Color(0xFF16A34A)
-                                                  ],
-                                                  stops: [0.0, 1.0],
-                                                  begin: AlignmentDirectional(
-                                                      0.0, -1.0),
-                                                  end: AlignmentDirectional(
-                                                      0, 1.0),
-                                                ),
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft:
-                                                      Radius.circular(12.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
-                                                  bottomLeft:
-                                                      Radius.circular(12.0),
-                                                  bottomRight:
-                                                      Radius.circular(12.0),
-                                                ),
-                                                shape: BoxShape.rectangle,
-                                                border: Border.all(
-                                                  color: Color(0xFFA5FF9E),
-                                                  width: 4.0,
-                                                ),
-                                              ),
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: Padding(
-                                                padding: EdgeInsets.all(5.0),
-                                                child: Container(
-                                                  child: Row(
-                                                    mainAxisSize:
-                                                        MainAxisSize.max,
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    crossAxisAlignment:
-                                                        CrossAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Column(
-                                                        mainAxisSize:
-                                                            MainAxisSize.min,
-                                                        mainAxisAlignment:
-                                                            (FFMainAxisAlignment
-                                                                    .start)
-                                                                .flutterValue,
-                                                        crossAxisAlignment:
-                                                            CrossAxisAlignment
-                                                                .center,
-                                                        children: [
-                                                          Icon(
-                                                            Icons
-                                                                .check_circle_outline_sharp,
-                                                            color: Colors.white,
-                                                            size: 55.0,
-                                                          ),
-                                                          Padding(
-                                                            padding:
-                                                                EdgeInsetsDirectional
-                                                                    .fromSTEB(
-                                                                        0.0,
-                                                                        5.0,
-                                                                        0.0,
-                                                                        0.0),
-                                                            child: Text(
-                                                              'ACIERTO',
-                                                              style: FlutterFlowTheme
-                                                                      .of(context)
-                                                                  .titleLarge
-                                                                  .override(
-                                                                    font: GoogleFonts
-                                                                        .poppins(
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                      fontStyle: FlutterFlowTheme.of(
-                                                                              context)
-                                                                          .titleLarge
-                                                                          .fontStyle,
-                                                                    ),
-                                                                    color: Colors
-                                                                        .white,
-                                                                    fontSize:
-                                                                        18.0,
-                                                                    letterSpacing:
-                                                                        0.0,
-                                                                    fontWeight:
-                                                                        FontWeight
-                                                                            .bold,
-                                                                    fontStyle: FlutterFlowTheme.of(
-                                                                            context)
-                                                                        .titleLarge
-                                                                        .fontStyle,
-                                                                    lineHeight:
-                                                                        1.3,
-                                                                  ),
-                                                            ),
-                                                          ),
-                                                        ],
-                                                      ),
-                                                    ].divide(
-                                                        SizedBox(width: 16.0)),
-                                                  ),
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  if (FFAppState().turnPhase == 'waiting' &&
-                                      FFAppState().CurrentTurn <=
-                                          FFAppState().TotalTurns)
-                                    Align(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            20.0, 0.0, 20.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            FFAppState().turnPhase = 'preview';
-                                            safeSetState(() {});
-                                            FFAppState().CardAnswered = false;
-                                            safeSetState(() {});
-                                            await Future.delayed(
-                                              Duration(
-                                                milliseconds: 100,
-                                              ),
-                                            );
-                                            _model.previewTimerController
-                                                .onResetTimer();
-
-                                            _model.previewTimerController
-                                                .onStartTimer();
-                                          },
-                                          child: Material(
-                                            color: Colors.transparent,
-                                            elevation: 0.0,
-                                            shape: RoundedRectangleBorder(
-                                              borderRadius: BorderRadius.only(
-                                                topLeft: Radius.circular(12.0),
-                                                topRight: Radius.circular(12.0),
-                                                bottomLeft:
-                                                    Radius.circular(12.0),
-                                                bottomRight:
-                                                    Radius.circular(12.0),
-                                              ),
-                                            ),
-                                            child: Container(
-                                              width: 130.0,
-                                              height: 110.0,
-                                              decoration: BoxDecoration(
-                                                boxShadow: [
-                                                  BoxShadow(
-                                                    blurRadius: 0.0,
-                                                    color: Color(0xFF26155C),
-                                                    offset: Offset(
-                                                      0.0,
-                                                      10.0,
-                                                    ),
-                                                  )
-                                                ],
-                                                gradient: LinearGradient(
-                                                  colors: [
-                                                    Color(0xFF22105A),
-                                                    Color(0xFF22105A)
-                                                  ],
-                                                  stops: [0.0, 1.0],
-                                                  begin: AlignmentDirectional(
-                                                      0.0, -1.0),
-                                                  end: AlignmentDirectional(
-                                                      0, 1.0),
-                                                ),
-                                                borderRadius: BorderRadius.only(
-                                                  topLeft:
-                                                      Radius.circular(12.0),
-                                                  topRight:
-                                                      Radius.circular(12.0),
-                                                  bottomLeft:
-                                                      Radius.circular(12.0),
-                                                  bottomRight:
-                                                      Radius.circular(12.0),
-                                                ),
-                                                shape: BoxShape.rectangle,
-                                                border: Border.all(
-                                                  color: Color(0xFF6D4CFF),
-                                                  width: 4.0,
-                                                ),
-                                              ),
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: ClipRRect(
-                                                borderRadius:
-                                                    BorderRadius.circular(8.0),
-                                                child: Image.asset(
-                                                  'assets/images/RevelarCarta.png',
-                                                  width: 200.0,
-                                                  height: 200.0,
-                                                  fit: BoxFit.cover,
-                                                ),
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                  if (FFAppState().turnPhase == 'playing')
-                                    Flexible(
-                                      child: Align(
-                                        alignment:
-                                            AlignmentDirectional(0.0, 0.0),
-                                        child: InkWell(
-                                          splashColor: Colors.transparent,
-                                          focusColor: Colors.transparent,
-                                          hoverColor: Colors.transparent,
-                                          highlightColor: Colors.transparent,
-                                          onTap: () async {
-                                            _model.soundPlayer1 ??=
-                                                AudioPlayer();
-                                            if (_model.soundPlayer1!.playing) {
-                                              await _model.soundPlayer1!.stop();
-                                            }
-                                            _model.soundPlayer1!.setVolume(1.0);
-                                            _model.soundPlayer1!
-                                                .setAsset(
-                                                    'assets/audios/taboo_fail_premium.mp3')
-                                                .then((_) => _model
-                                                    .soundPlayer1!
-                                                    .play());
-
-                                            FFAppState().turnPhase = 'answered';
-                                            safeSetState(() {});
-                                            FFAppState().CardAnswered = true;
-                                            safeSetState(() {});
-                                            _model.playTimerController
-                                                .onStopTimer();
-                                            if (FFAppState().gameMode == 1) {
-                                              await actions
-                                                  .mostrarVentanaTransicion(
-                                                context,
-                                              );
-                                            } else {
-                                              await actions
-                                                  .mostrarVentanaTransicionIndividual(
-                                                context,
-                                              );
-                                            }
-                                          },
-                                          child: Container(
-                                            width: 100.0,
-                                            height: 110.0,
-                                            decoration: BoxDecoration(
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  blurRadius: 0.0,
-                                                  color: Color(0xFFDC2626),
-                                                  offset: Offset(
-                                                    0.0,
-                                                    7.0,
-                                                  ),
-                                                )
-                                              ],
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Color(0xFFFF6B5E),
-                                                  Color(0xFFDC2626)
-                                                ],
-                                                stops: [0.0, 1.0],
-                                                begin: AlignmentDirectional(
-                                                    0.0, -1.0),
-                                                end: AlignmentDirectional(
-                                                    0, 1.0),
-                                              ),
-                                              borderRadius:
-                                                  BorderRadius.circular(24.0),
-                                              shape: BoxShape.rectangle,
-                                              border: Border.all(
-                                                color: Color(0xFFFFB4AA),
-                                                width: 5.0,
-                                              ),
-                                            ),
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: Column(
-                                              mainAxisSize: MainAxisSize.min,
-                                              mainAxisAlignment:
-                                                  MainAxisAlignment.center,
-                                              crossAxisAlignment:
-                                                  CrossAxisAlignment.center,
-                                              children: [
-                                                Icon(
-                                                  Icons.cancel_outlined,
-                                                  color: Colors.white,
-                                                  size: 55.0,
-                                                ),
-                                                Align(
-                                                  alignment:
-                                                      AlignmentDirectional(
-                                                          0.0, 0.0),
-                                                  child: Padding(
-                                                    padding:
-                                                        EdgeInsetsDirectional
-                                                            .fromSTEB(0.0, 5.0,
-                                                                0.0, 0.0),
-                                                    child: Text(
-                                                      'FALLO',
-                                                      style: FlutterFlowTheme
-                                                              .of(context)
-                                                          .titleLarge
-                                                          .override(
-                                                            font: GoogleFonts
-                                                                .poppins(
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                              fontStyle:
-                                                                  FlutterFlowTheme.of(
-                                                                          context)
-                                                                      .titleLarge
-                                                                      .fontStyle,
-                                                            ),
-                                                            color: Colors.white,
-                                                            fontSize: 18.0,
-                                                            letterSpacing: 0.0,
-                                                            fontWeight:
-                                                                FontWeight.bold,
-                                                            fontStyle:
-                                                                FlutterFlowTheme.of(
-                                                                        context)
-                                                                    .titleLarge
-                                                                    .fontStyle,
-                                                            lineHeight: 1.3,
-                                                          ),
-                                                    ),
-                                                  ),
-                                                ),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ),
-                                ],
-                              ),
-                            ),
-                            if ((FFAppState().turnPhase == 'preview') ||
-                                (FFAppState().turnPhase == 'playing'))
-                              Align(
-                                alignment: AlignmentDirectional(0.0, 0.0),
-                                child: Container(
-                                  width: 320.0,
-                                  height: 110.0,
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(25.0),
-                                      topRight: Radius.circular(25.0),
-                                      bottomLeft: Radius.circular(25.0),
-                                      bottomRight: Radius.circular(25.0),
-                                    ),
-                                    border: Border.all(
-                                      color: Color(0xFF6D4CFF),
-                                      width: 3.0,
-                                    ),
-                                  ),
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Stack(
-                                      alignment: AlignmentDirectional(0.0, 0.0),
-                                      children: [
-                                        if (FFAppState().turnPhase ==
-                                                'preview' ||
-                                            FFAppState().turnPhase == 'playing')
-                                          Opacity(
-                                            opacity: FFAppState().turnPhase ==
-                                                    'playing'
-                                                ? 1.0
-                                                : 0.0,
-                                            child: Align(
-                                              alignment: AlignmentDirectional(
-                                                  0.0, 0.0),
-                                              child: FlutterFlowTimer(
-                                                initialTime: _model
-                                                    .playTimerInitialTimeMs,
-                                                getDisplayTime: (value) =>
-                                                    StopWatchTimer
-                                                        .getDisplayTime(
-                                                  value,
-                                                  hours: false,
-                                                  milliSecond: false,
-                                                ),
-                                                controller:
-                                                    _model.playTimerController,
-                                                updateStateInterval: Duration(
-                                                    milliseconds: 1000),
-                                                onChanged: (value, displayTime,
-                                                    shouldUpdate) {
-                                                  _model.playTimerMilliseconds =
-                                                      value;
-                                                  _model.playTimerValue =
-                                                      displayTime;
-                                                  if (shouldUpdate)
-                                                    safeSetState(() {});
-                                                },
-                                                onEnded: () async {
-                                                  _model.soundPlayer2 ??=
-                                                      AudioPlayer();
-                                                  if (_model
-                                                      .soundPlayer2!.playing) {
-                                                    await _model.soundPlayer2!
-                                                        .stop();
-                                                  }
-                                                  _model.soundPlayer2!
-                                                      .setVolume(1.0);
-                                                  _model.soundPlayer2!
-                                                      .setAsset(
-                                                          'assets/audios/taboo_fail_premium.mp3')
-                                                      .then((_) => _model
-                                                          .soundPlayer2!
-                                                          .play());
 
                                                   FFAppState().turnPhase =
                                                       'answered';
@@ -900,14 +436,510 @@ class _WordScreenWidgetState extends State<WordScreenWidget> {
                                                       context,
                                                     );
                                                   }
-                                                },
-                                                textAlign: TextAlign.center,
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .headlineSmall
-                                                    .override(
-                                                      font:
-                                                          GoogleFonts.orbitron(
+                                                }
+                                              },
+                                              child: Material(
+                                                color: Colors.transparent,
+                                                elevation: 0.0,
+                                                shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                      BorderRadius.only(
+                                                    topLeft:
+                                                        Radius.circular(12.0),
+                                                    topRight:
+                                                        Radius.circular(12.0),
+                                                    bottomLeft:
+                                                        Radius.circular(12.0),
+                                                    bottomRight:
+                                                        Radius.circular(12.0),
+                                                  ),
+                                                ),
+                                                child: Container(
+                                                  width: 100.0,
+                                                  height: 110.0,
+                                                  decoration: BoxDecoration(
+                                                    boxShadow: [
+                                                      BoxShadow(
+                                                        blurRadius: 0.0,
+                                                        color:
+                                                            Color(0xFF16A34A),
+                                                        offset: Offset(
+                                                          0.0,
+                                                          7.0,
+                                                        ),
+                                                      )
+                                                    ],
+                                                    gradient: LinearGradient(
+                                                      colors: [
+                                                        Color(0xFF6EF56F),
+                                                        Color(0xFF16A34A)
+                                                      ],
+                                                      stops: [0.0, 1.0],
+                                                      begin:
+                                                          AlignmentDirectional(
+                                                              0.0, -1.0),
+                                                      end: AlignmentDirectional(
+                                                          0, 1.0),
+                                                    ),
+                                                    borderRadius:
+                                                        BorderRadius.only(
+                                                      topLeft:
+                                                          Radius.circular(12.0),
+                                                      topRight:
+                                                          Radius.circular(12.0),
+                                                      bottomLeft:
+                                                          Radius.circular(12.0),
+                                                      bottomRight:
+                                                          Radius.circular(12.0),
+                                                    ),
+                                                    shape: BoxShape.rectangle,
+                                                    border: Border.all(
+                                                      color: Color(0xFFA5FF9E),
+                                                      width: 4.0,
+                                                    ),
+                                                  ),
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: Padding(
+                                                    padding:
+                                                        EdgeInsets.all(5.0),
+                                                    child: Container(
+                                                      child: Row(
+                                                        mainAxisSize:
+                                                            MainAxisSize.max,
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .center,
+                                                        crossAxisAlignment:
+                                                            CrossAxisAlignment
+                                                                .center,
+                                                        children: [
+                                                          Column(
+                                                            mainAxisSize:
+                                                                MainAxisSize
+                                                                    .min,
+                                                            mainAxisAlignment:
+                                                                (FFMainAxisAlignment
+                                                                        .start)
+                                                                    .flutterValue,
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .center,
+                                                            children: [
+                                                              Icon(
+                                                                Icons
+                                                                    .check_circle_outline_sharp,
+                                                                color: Colors
+                                                                    .white,
+                                                                size: 55.0,
+                                                              ),
+                                                              Padding(
+                                                                padding:
+                                                                    EdgeInsetsDirectional
+                                                                        .fromSTEB(
+                                                                            0.0,
+                                                                            5.0,
+                                                                            0.0,
+                                                                            0.0),
+                                                                child: Text(
+                                                                  'ACIERTO',
+                                                                  style: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLarge
+                                                                      .override(
+                                                                        font: GoogleFonts
+                                                                            .poppins(
+                                                                          fontWeight:
+                                                                              FontWeight.bold,
+                                                                          fontStyle: FlutterFlowTheme.of(context)
+                                                                              .titleLarge
+                                                                              .fontStyle,
+                                                                        ),
+                                                                        color: Colors
+                                                                            .white,
+                                                                        fontSize:
+                                                                            18.0,
+                                                                        letterSpacing:
+                                                                            0.0,
+                                                                        fontWeight:
+                                                                            FontWeight.bold,
+                                                                        fontStyle: FlutterFlowTheme.of(context)
+                                                                            .titleLarge
+                                                                            .fontStyle,
+                                                                        lineHeight:
+                                                                            1.3,
+                                                                      ),
+                                                                ),
+                                                              ),
+                                                            ],
+                                                          ),
+                                                        ].divide(SizedBox(
+                                                            width: 16.0)),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      if (FFAppState().turnPhase == 'playing')
+                                        Flexible(
+                                          child: Align(
+                                            alignment:
+                                                AlignmentDirectional(0.0, 0.0),
+                                            child: InkWell(
+                                              splashColor: Colors.transparent,
+                                              focusColor: Colors.transparent,
+                                              hoverColor: Colors.transparent,
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              onTap: () async {
+                                                _model.soundPlayer1 ??=
+                                                    AudioPlayer();
+                                                if (_model
+                                                    .soundPlayer1!.playing) {
+                                                  await _model.soundPlayer1!
+                                                      .stop();
+                                                }
+                                                _model.soundPlayer1!
+                                                    .setVolume(1.0);
+                                                _model.soundPlayer1!
+                                                    .setAsset(
+                                                        'assets/audios/taboo_fail_premium.mp3')
+                                                    .then((_) => _model
+                                                        .soundPlayer1!
+                                                        .play());
+
+                                                FFAppState().turnPhase =
+                                                    'answered';
+                                                safeSetState(() {});
+                                                FFAppState().CardAnswered =
+                                                    true;
+                                                safeSetState(() {});
+                                                _model.playTimerController
+                                                    .onStopTimer();
+                                                if (FFAppState().gameMode ==
+                                                    1) {
+                                                  await actions
+                                                      .mostrarVentanaTransicion(
+                                                    context,
+                                                  );
+                                                } else {
+                                                  await actions
+                                                      .mostrarVentanaTransicionIndividual(
+                                                    context,
+                                                  );
+                                                }
+                                              },
+                                              child: Container(
+                                                width: 100.0,
+                                                height: 110.0,
+                                                decoration: BoxDecoration(
+                                                  boxShadow: [
+                                                    BoxShadow(
+                                                      blurRadius: 0.0,
+                                                      color: Color(0xFFDC2626),
+                                                      offset: Offset(
+                                                        0.0,
+                                                        7.0,
+                                                      ),
+                                                    )
+                                                  ],
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Color(0xFFFF6B5E),
+                                                      Color(0xFFDC2626)
+                                                    ],
+                                                    stops: [0.0, 1.0],
+                                                    begin: AlignmentDirectional(
+                                                        0.0, -1.0),
+                                                    end: AlignmentDirectional(
+                                                        0, 1.0),
+                                                  ),
+                                                  borderRadius:
+                                                      BorderRadius.circular(
+                                                          24.0),
+                                                  shape: BoxShape.rectangle,
+                                                  border: Border.all(
+                                                    color: Color(0xFFFFB4AA),
+                                                    width: 5.0,
+                                                  ),
+                                                ),
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: Column(
+                                                  mainAxisSize:
+                                                      MainAxisSize.min,
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  crossAxisAlignment:
+                                                      CrossAxisAlignment.center,
+                                                  children: [
+                                                    Icon(
+                                                      Icons.cancel_outlined,
+                                                      color: Colors.white,
+                                                      size: 55.0,
+                                                    ),
+                                                    Align(
+                                                      alignment:
+                                                          AlignmentDirectional(
+                                                              0.0, 0.0),
+                                                      child: Padding(
+                                                        padding:
+                                                            EdgeInsetsDirectional
+                                                                .fromSTEB(
+                                                                    0.0,
+                                                                    5.0,
+                                                                    0.0,
+                                                                    0.0),
+                                                        child: Text(
+                                                          'FALLO',
+                                                          style: FlutterFlowTheme
+                                                                  .of(context)
+                                                              .titleLarge
+                                                              .override(
+                                                                font: GoogleFonts
+                                                                    .poppins(
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold,
+                                                                  fontStyle: FlutterFlowTheme.of(
+                                                                          context)
+                                                                      .titleLarge
+                                                                      .fontStyle,
+                                                                ),
+                                                                color: Colors
+                                                                    .white,
+                                                                fontSize: 18.0,
+                                                                letterSpacing:
+                                                                    0.0,
+                                                                fontWeight:
+                                                                    FontWeight
+                                                                        .bold,
+                                                                fontStyle: FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .titleLarge
+                                                                    .fontStyle,
+                                                                lineHeight: 1.3,
+                                                              ),
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                    ],
+                                  ),
+                                ),
+                                if ((FFAppState().turnPhase == 'preview') ||
+                                    (FFAppState().turnPhase == 'playing'))
+                                  Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: Container(
+                                      width: 320.0,
+                                      height: 110.0,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(25.0),
+                                          topRight: Radius.circular(25.0),
+                                          bottomLeft: Radius.circular(25.0),
+                                          bottomRight: Radius.circular(25.0),
+                                        ),
+                                        border: Border.all(
+                                          color: Color(0xFF6D4CFF),
+                                          width: 3.0,
+                                        ),
+                                      ),
+                                      alignment: AlignmentDirectional(0.0, 0.0),
+                                      child: Align(
+                                        alignment:
+                                            AlignmentDirectional(0.0, 0.0),
+                                        child: Stack(
+                                          alignment:
+                                              AlignmentDirectional(0.0, 0.0),
+                                          children: [
+                                            if (FFAppState().turnPhase ==
+                                                    'preview' ||
+                                                FFAppState().turnPhase ==
+                                                    'playing')
+                                              Opacity(
+                                                opacity:
+                                                    FFAppState().turnPhase ==
+                                                            'playing'
+                                                        ? 1.0
+                                                        : 0.0,
+                                                child: Align(
+                                                  alignment:
+                                                      AlignmentDirectional(
+                                                          0.0, 0.0),
+                                                  child: FlutterFlowTimer(
+                                                    initialTime: _model
+                                                        .playTimerInitialTimeMs,
+                                                    getDisplayTime: (value) =>
+                                                        StopWatchTimer
+                                                            .getDisplayTime(
+                                                      value,
+                                                      hours: false,
+                                                      milliSecond: false,
+                                                    ),
+                                                    controller: _model
+                                                        .playTimerController,
+                                                    updateStateInterval:
+                                                        Duration(
+                                                            milliseconds: 1000),
+                                                    onChanged: (value,
+                                                        displayTime,
+                                                        shouldUpdate) {
+                                                      _model.playTimerMilliseconds =
+                                                          value;
+                                                      _model.playTimerValue =
+                                                          displayTime;
+                                                      if (shouldUpdate)
+                                                        safeSetState(() {});
+                                                    },
+                                                    onEnded: () async {
+                                                      _model.soundPlayer2 ??=
+                                                          AudioPlayer();
+                                                      if (_model.soundPlayer2!
+                                                          .playing) {
+                                                        await _model
+                                                            .soundPlayer2!
+                                                            .stop();
+                                                      }
+                                                      _model.soundPlayer2!
+                                                          .setVolume(1.0);
+                                                      _model.soundPlayer2!
+                                                          .setAsset(
+                                                              'assets/audios/taboo_fail_premium.mp3')
+                                                          .then((_) => _model
+                                                              .soundPlayer2!
+                                                              .play());
+
+                                                      FFAppState().turnPhase =
+                                                          'answered';
+                                                      safeSetState(() {});
+                                                      FFAppState()
+                                                          .CardAnswered = true;
+                                                      safeSetState(() {});
+                                                      _model.playTimerController
+                                                          .onStopTimer();
+                                                      if (FFAppState()
+                                                              .gameMode ==
+                                                          1) {
+                                                        await actions
+                                                            .mostrarVentanaTransicion(
+                                                          context,
+                                                        );
+                                                      } else {
+                                                        await actions
+                                                            .mostrarVentanaTransicionIndividual(
+                                                          context,
+                                                        );
+                                                      }
+                                                    },
+                                                    textAlign: TextAlign.center,
+                                                    style: FlutterFlowTheme.of(
+                                                            context)
+                                                        .headlineSmall
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .orbitron(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .headlineSmall
+                                                                    .fontStyle,
+                                                          ),
+                                                          color:
+                                                              Color(0xC9F0E80A),
+                                                          fontSize: 75.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                  ),
+                                                ),
+                                              ),
+                                            if (FFAppState().turnPhase ==
+                                                'preview')
+                                              Align(
+                                                alignment: AlignmentDirectional(
+                                                    0.0, 0.0),
+                                                child: FlutterFlowTimer(
+                                                  initialTime: _model
+                                                      .previewTimerInitialTimeMs,
+                                                  getDisplayTime: (value) =>
+                                                      StopWatchTimer
+                                                          .getDisplayTime(
+                                                    value,
+                                                    hours: false,
+                                                    milliSecond: false,
+                                                  ),
+                                                  controller: _model
+                                                      .previewTimerController,
+                                                  updateStateInterval: Duration(
+                                                      milliseconds: 1000),
+                                                  onChanged: (value,
+                                                      displayTime,
+                                                      shouldUpdate) {
+                                                    _model.previewTimerMilliseconds =
+                                                        value;
+                                                    _model.previewTimerValue =
+                                                        displayTime;
+                                                    if (shouldUpdate)
+                                                      safeSetState(() {});
+                                                  },
+                                                  onEnded: () async {
+                                                    FFAppState().turnPhase =
+                                                        'playing';
+                                                    safeSetState(() {});
+                                                    await Future.delayed(
+                                                      Duration(
+                                                        milliseconds: 400,
+                                                      ),
+                                                    );
+                                                    _model.playTimerController
+                                                        .onResetTimer();
+
+                                                    await Future.delayed(
+                                                      Duration(
+                                                        milliseconds: 150,
+                                                      ),
+                                                    );
+                                                    _model.playTimerController
+                                                        .onStartTimer();
+                                                  },
+                                                  textAlign: TextAlign.center,
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .headlineSmall
+                                                      .override(
+                                                        font: GoogleFonts
+                                                            .orbitron(
+                                                          fontWeight:
+                                                              FontWeight.bold,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .headlineSmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xC9F0E80A),
+                                                        fontSize: 75.0,
+                                                        letterSpacing: 0.0,
                                                         fontWeight:
                                                             FontWeight.bold,
                                                         fontStyle:
@@ -916,93 +948,127 @@ class _WordScreenWidgetState extends State<WordScreenWidget> {
                                                                 .headlineSmall
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xC9F0E80A),
-                                                      fontSize: 75.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall
-                                                              .fontStyle,
-                                                    ),
+                                                ),
                                               ),
-                                            ),
-                                          ),
-                                        if (FFAppState().turnPhase == 'preview')
-                                          Align(
-                                            alignment:
-                                                AlignmentDirectional(0.0, 0.0),
-                                            child: FlutterFlowTimer(
-                                              initialTime: _model
-                                                  .previewTimerInitialTimeMs,
-                                              getDisplayTime: (value) =>
-                                                  StopWatchTimer.getDisplayTime(
-                                                value,
-                                                hours: false,
-                                                milliSecond: false,
-                                              ),
-                                              controller:
-                                                  _model.previewTimerController,
-                                              updateStateInterval:
-                                                  Duration(milliseconds: 1000),
-                                              onChanged: (value, displayTime,
-                                                  shouldUpdate) {
-                                                _model.previewTimerMilliseconds =
-                                                    value;
-                                                _model.previewTimerValue =
-                                                    displayTime;
-                                                if (shouldUpdate)
-                                                  safeSetState(() {});
-                                              },
-                                              onEnded: () async {
-                                                FFAppState().turnPhase =
-                                                    'playing';
-                                                safeSetState(() {});
-                                                await Future.delayed(
-                                                  Duration(
-                                                    milliseconds: 400,
-                                                  ),
-                                                );
-                                                _model.playTimerController
-                                                    .onResetTimer();
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                              ],
+                            ),
+                            if (FFAppState().turnPhase == 'waiting' &&
+                                FFAppState().CurrentTurn <=
+                                    FFAppState().TotalTurns)
+                              Align(
+                                alignment: AlignmentDirectional(0.0, 0.0),
+                                child: Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      0.0, 50.0, 0.0, 0.0),
+                                  child: InkWell(
+                                    splashColor: Colors.transparent,
+                                    focusColor: Colors.transparent,
+                                    hoverColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    onTap: () async {
+                                      FFAppState().turnPhase = 'preview';
+                                      safeSetState(() {});
+                                      FFAppState().CardAnswered = false;
+                                      safeSetState(() {});
+                                      await Future.delayed(
+                                        Duration(
+                                          milliseconds: 100,
+                                        ),
+                                      );
+                                      _model.previewTimerController
+                                          .onResetTimer();
 
-                                                await Future.delayed(
-                                                  Duration(
-                                                    milliseconds: 150,
-                                                  ),
-                                                );
-                                                _model.playTimerController
-                                                    .onStartTimer();
-                                              },
-                                              textAlign: TextAlign.center,
-                                              style: FlutterFlowTheme.of(
-                                                      context)
-                                                  .headlineSmall
-                                                  .override(
-                                                    font: GoogleFonts.orbitron(
-                                                      fontWeight:
-                                                          FontWeight.bold,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .headlineSmall
-                                                              .fontStyle,
-                                                    ),
-                                                    color: Color(0xC9F0E80A),
-                                                    fontSize: 75.0,
-                                                    letterSpacing: 0.0,
-                                                    fontWeight: FontWeight.bold,
-                                                    fontStyle:
-                                                        FlutterFlowTheme.of(
-                                                                context)
-                                                            .headlineSmall
-                                                            .fontStyle,
-                                                  ),
+                                      _model.previewTimerController
+                                          .onStartTimer();
+                                    },
+                                    child: Container(
+                                      width: 320.0,
+                                      height: 70.0,
+                                      decoration: BoxDecoration(
+                                        boxShadow: [
+                                          BoxShadow(
+                                            blurRadius: 0.0,
+                                            color: Color(0xFFB36A00),
+                                            offset: Offset(
+                                              0.0,
+                                              8.0,
                                             ),
-                                          ),
-                                      ],
+                                            spreadRadius: 3.0,
+                                          )
+                                        ],
+                                        gradient: LinearGradient(
+                                          colors: [
+                                            Color(0xFFFFD400),
+                                            Color(0xFFFFB800)
+                                          ],
+                                          stops: [0.0, 1.0],
+                                          begin:
+                                              AlignmentDirectional(0.0, -1.0),
+                                          end: AlignmentDirectional(0, 1.0),
+                                        ),
+                                        borderRadius: BorderRadius.only(
+                                          topLeft: Radius.circular(24.0),
+                                          topRight: Radius.circular(24.0),
+                                          bottomLeft: Radius.circular(24.0),
+                                          bottomRight: Radius.circular(24.0),
+                                        ),
+                                        border: Border.all(
+                                          color: Color(0xFFFFF6B0),
+                                          width: 3.0,
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: EdgeInsetsDirectional.fromSTEB(
+                                            0.0, 10.0, 0.0, 10.0),
+                                        child: Row(
+                                          mainAxisSize: MainAxisSize.max,
+                                          mainAxisAlignment:
+                                              (FFMainAxisAlignment.center)
+                                                  .flutterValue,
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.center,
+                                          children: [
+                                            Align(
+                                              alignment: AlignmentDirectional(
+                                                  -1.0, 0.0),
+                                              child: Text(
+                                                'REVELAR CARTA',
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font: GoogleFonts
+                                                              .montserrat(
+                                                            fontWeight:
+                                                                FontWeight.w800,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color:
+                                                              Color(0xFF2D003F),
+                                                          fontSize: 32.0,
+                                                          letterSpacing: 0.0,
+                                                          fontWeight:
+                                                              FontWeight.w800,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodyMedium
+                                                                  .fontStyle,
+                                                        ),
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
                                     ),
                                   ),
                                 ),
