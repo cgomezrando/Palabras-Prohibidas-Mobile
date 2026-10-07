@@ -54,9 +54,13 @@ workflows:
       - name: Set minimum iOS version to 15.0
         script: |
           sed -i '' -E 's/IPHONEOS_DEPLOYMENT_TARGET = [^;]+;/IPHONEOS_DEPLOYMENT_TARGET = 15.0;/g' ios/Runner.xcodeproj/project.pbxproj
-          if [ -f ios/Podfile ]; then
-            sed -i '' -E "s/^# *platform :ios.*/platform :ios, '15.0'/" ios/Podfile
-            sed -i '' -E "s/^platform :ios.*/platform :ios, '15.0'/" ios/Podfile
+          PODFILE="ios/Podfile"
+          if [ -f "$PODFILE" ]; then
+            # Elimina cualquier linea platform (comentada o no) y la fuerza al principio
+            sed -i '' -E "/^[[:space:]]*#?[[:space:]]*platform[[:space:]]*:ios/d" "$PODFILE"
+            printf "platform :ios, '15.0'\n%s" "$(cat "$PODFILE")" > "$PODFILE"
+            echo "Podfile (primeras lineas):"
+            head -3 "$PODFILE"
           fi
 
       - name: Portrait-only + export compliance
