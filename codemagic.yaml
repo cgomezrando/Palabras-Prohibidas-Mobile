@@ -10,7 +10,7 @@ workflows:
       vars:
         BUNDLE_ID: com.cgr.PalabrasProhibidasMobile
         P12_PASSWORD: TempBuildPass123
-      flutter: 3.32.0
+      flutter: 3.35.4
       xcode: 26.6
       cocoapods: default
 
