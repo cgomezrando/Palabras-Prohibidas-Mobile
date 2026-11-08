@@ -1810,19 +1810,19 @@ class _PairsPlayerSetupWidgetState extends State<PairsPlayerSetupWidget> {
                                     FFAppState().winnerName = '';
                                     safeSetState(() {});
                                     if (FFAppState().TeamCount == 1) {
-                                      FFAppState().TotalTurns = 20;
+                                      FFAppState().TotalTurns = 10;
                                       safeSetState(() {});
                                     }
                                     if (FFAppState().TeamCount == 2) {
-                                      FFAppState().TotalTurns = 40;
+                                      FFAppState().TotalTurns = 20;
                                       safeSetState(() {});
                                     }
                                     if (FFAppState().TeamCount == 3) {
-                                      FFAppState().TotalTurns = 60;
+                                      FFAppState().TotalTurns = 30;
                                       safeSetState(() {});
                                     }
                                     if (FFAppState().TeamCount == 4) {
-                                      FFAppState().TotalTurns = 80;
+                                      FFAppState().TotalTurns = 40;
                                       safeSetState(() {});
                                     }
                                     _model.loadedCards =
