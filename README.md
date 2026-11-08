@@ -1,4 +1,4 @@
-# Palabras Prohibidas Mobile
+# Trivia Master Mobile
 
 A new Flutter project.
 
