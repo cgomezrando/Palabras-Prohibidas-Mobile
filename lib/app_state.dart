@@ -24,167 +24,158 @@ class FFAppState extends ChangeNotifier {
     notifyListeners();
   }
 
-  List<String> _selectedThemes = [];
-  List<String> get selectedThemes => _selectedThemes;
-  set selectedThemes(List<String> value) {
-    _selectedThemes = value;
+  int _currentCardIndex = 0;
+  int get currentCardIndex => _currentCardIndex;
+  set currentCardIndex(int value) {
+    _currentCardIndex = value;
   }
 
-  void addToSelectedThemes(String value) {
-    selectedThemes.add(value);
+  int _currentTeam = 1;
+  int get currentTeam => _currentTeam;
+  set currentTeam(int value) {
+    _currentTeam = value;
   }
 
-  void removeFromSelectedThemes(String value) {
-    selectedThemes.remove(value);
+  int _TeamCount = 0;
+  int get TeamCount => _TeamCount;
+  set TeamCount(int value) {
+    _TeamCount = value;
   }
 
-  void removeAtIndexFromSelectedThemes(int index) {
-    selectedThemes.removeAt(index);
+  String _Team1Name = '';
+  String get Team1Name => _Team1Name;
+  set Team1Name(String value) {
+    _Team1Name = value;
   }
 
-  void updateSelectedThemesAtIndex(
+  String _Team2Name = '';
+  String get Team2Name => _Team2Name;
+  set Team2Name(String value) {
+    _Team2Name = value;
+  }
+
+  String _Team3Name = '';
+  String get Team3Name => _Team3Name;
+  set Team3Name(String value) {
+    _Team3Name = value;
+  }
+
+  String _Team4Name = '';
+  String get Team4Name => _Team4Name;
+  set Team4Name(String value) {
+    _Team4Name = value;
+  }
+
+  int _Team1Score = 0;
+  int get Team1Score => _Team1Score;
+  set Team1Score(int value) {
+    _Team1Score = value;
+  }
+
+  int _Team2Score = 0;
+  int get Team2Score => _Team2Score;
+  set Team2Score(int value) {
+    _Team2Score = value;
+  }
+
+  int _Team3Score = 0;
+  int get Team3Score => _Team3Score;
+  set Team3Score(int value) {
+    _Team3Score = value;
+  }
+
+  int _Team4Score = 0;
+  int get Team4Score => _Team4Score;
+  set Team4Score(int value) {
+    _Team4Score = value;
+  }
+
+  int _TotalTurns = 10;
+  int get TotalTurns => _TotalTurns;
+  set TotalTurns(int value) {
+    _TotalTurns = value;
+  }
+
+  bool _timerExpired = false;
+  bool get timerExpired => _timerExpired;
+  set timerExpired(bool value) {
+    _timerExpired = value;
+  }
+
+  String _winnerName = '';
+  String get winnerName => _winnerName;
+  set winnerName(String value) {
+    _winnerName = value;
+  }
+
+  bool _GameFinished = false;
+  bool get GameFinished => _GameFinished;
+  set GameFinished(bool value) {
+    _GameFinished = value;
+  }
+
+  bool _CardAnswered = false;
+  bool get CardAnswered => _CardAnswered;
+  set CardAnswered(bool value) {
+    _CardAnswered = value;
+  }
+
+  int _PlayTime = 60;
+  int get PlayTime => _PlayTime;
+  set PlayTime(int value) {
+    _PlayTime = value;
+  }
+
+  int _CurrentTurn = 0;
+  int get CurrentTurn => _CurrentTurn;
+  set CurrentTurn(int value) {
+    _CurrentTurn = value;
+  }
+
+  List<QuestionStruct> _GameCards = [];
+  List<QuestionStruct> get GameCards => _GameCards;
+  set GameCards(List<QuestionStruct> value) {
+    _GameCards = value;
+  }
+
+  void addToGameCards(QuestionStruct value) {
+    GameCards.add(value);
+  }
+
+  void removeFromGameCards(QuestionStruct value) {
+    GameCards.remove(value);
+  }
+
+  void removeAtIndexFromGameCards(int index) {
+    GameCards.removeAt(index);
+  }
+
+  void updateGameCardsAtIndex(
     int index,
-    String Function(String) updateFn,
+    QuestionStruct Function(QuestionStruct) updateFn,
   ) {
-    selectedThemes[index] = updateFn(_selectedThemes[index]);
+    GameCards[index] = updateFn(_GameCards[index]);
   }
 
-  void insertAtIndexInSelectedThemes(int index, String value) {
-    selectedThemes.insert(index, value);
+  void insertAtIndexInGameCards(int index, QuestionStruct value) {
+    GameCards.insert(index, value);
   }
 
-  String _gameMode = '';
-  String get gameMode => _gameMode;
-  set gameMode(String value) {
+  int _PreviewTime = 5;
+  int get PreviewTime => _PreviewTime;
+  set PreviewTime(int value) {
+    _PreviewTime = value;
+  }
+
+  String _turnPhase = 'waiting';
+  String get turnPhase => _turnPhase;
+  set turnPhase(String value) {
+    _turnPhase = value;
+  }
+
+  int _gameMode = 1;
+  int get gameMode => _gameMode;
+  set gameMode(int value) {
     _gameMode = value;
-  }
-
-  int _numberOfQuestions = 10;
-  int get numberOfQuestions => _numberOfQuestions;
-  set numberOfQuestions(int value) {
-    _numberOfQuestions = value;
-  }
-
-  List<TriviaQuestionStruct> _questions = [];
-  List<TriviaQuestionStruct> get questions => _questions;
-  set questions(List<TriviaQuestionStruct> value) {
-    _questions = value;
-  }
-
-  void addToQuestions(TriviaQuestionStruct value) {
-    questions.add(value);
-  }
-
-  void removeFromQuestions(TriviaQuestionStruct value) {
-    questions.remove(value);
-  }
-
-  void removeAtIndexFromQuestions(int index) {
-    questions.removeAt(index);
-  }
-
-  void updateQuestionsAtIndex(
-    int index,
-    TriviaQuestionStruct Function(TriviaQuestionStruct) updateFn,
-  ) {
-    questions[index] = updateFn(_questions[index]);
-  }
-
-  void insertAtIndexInQuestions(int index, TriviaQuestionStruct value) {
-    questions.insert(index, value);
-  }
-
-  int _currentQuestionIndex = 0;
-  int get currentQuestionIndex => _currentQuestionIndex;
-  set currentQuestionIndex(int value) {
-    _currentQuestionIndex = value;
-  }
-
-  List<PlayerStruct> _players = [];
-  List<PlayerStruct> get players => _players;
-  set players(List<PlayerStruct> value) {
-    _players = value;
-  }
-
-  void addToPlayers(PlayerStruct value) {
-    players.add(value);
-  }
-
-  void removeFromPlayers(PlayerStruct value) {
-    players.remove(value);
-  }
-
-  void removeAtIndexFromPlayers(int index) {
-    players.removeAt(index);
-  }
-
-  void updatePlayersAtIndex(
-    int index,
-    PlayerStruct Function(PlayerStruct) updateFn,
-  ) {
-    players[index] = updateFn(_players[index]);
-  }
-
-  void insertAtIndexInPlayers(int index, PlayerStruct value) {
-    players.insert(index, value);
-  }
-
-  int _currentPlayerIndex = 0;
-  int get currentPlayerIndex => _currentPlayerIndex;
-  set currentPlayerIndex(int value) {
-    _currentPlayerIndex = value;
-  }
-
-  List<PlayerStruct> _ranking = [];
-  List<PlayerStruct> get ranking => _ranking;
-  set ranking(List<PlayerStruct> value) {
-    _ranking = value;
-  }
-
-  void addToRanking(PlayerStruct value) {
-    ranking.add(value);
-  }
-
-  void removeFromRanking(PlayerStruct value) {
-    ranking.remove(value);
-  }
-
-  void removeAtIndexFromRanking(int index) {
-    ranking.removeAt(index);
-  }
-
-  void updateRankingAtIndex(
-    int index,
-    PlayerStruct Function(PlayerStruct) updateFn,
-  ) {
-    ranking[index] = updateFn(_ranking[index]);
-  }
-
-  void insertAtIndexInRanking(int index, PlayerStruct value) {
-    ranking.insert(index, value);
-  }
-
-  int _numPlayers = 0;
-  int get numPlayers => _numPlayers;
-  set numPlayers(int value) {
-    _numPlayers = value;
-  }
-
-  bool _isAuthenticating = true;
-  bool get isAuthenticating => _isAuthenticating;
-  set isAuthenticating(bool value) {
-    _isAuthenticating = value;
-  }
-
-  String _partidaId = '';
-  String get partidaId => _partidaId;
-  set partidaId(String value) {
-    _partidaId = value;
-  }
-
-  bool _isOnlineMode = false;
-  bool get isOnlineMode => _isOnlineMode;
-  set isOnlineMode(bool value) {
-    _isOnlineMode = value;
   }
 }

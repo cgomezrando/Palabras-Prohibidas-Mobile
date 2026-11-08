@@ -47,12 +47,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context) => Container(
                 color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/triviamastericono.png',
+                  'assets/images/Icono.png',
                   fit: BoxFit.contain,
                 ),
               ),
             )
-          : HomePageWidget(),
+          : HomeScreenWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -62,22 +62,32 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   builder: (context) => Container(
                     color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/triviamastericono.png',
+                      'assets/images/Icono.png',
                       fit: BoxFit.contain,
                     ),
                   ),
                 )
-              : HomePageWidget(),
+              : HomeScreenWidget(),
         ),
         FFRoute(
-          name: GamePageWidget.routeName,
-          path: GamePageWidget.routePath,
-          builder: (context, params) => GamePageWidget(),
+          name: HomeScreenWidget.routeName,
+          path: HomeScreenWidget.routePath,
+          builder: (context, params) => HomeScreenWidget(),
         ),
         FFRoute(
-          name: HomePageWidget.routeName,
-          path: HomePageWidget.routePath,
-          builder: (context, params) => HomePageWidget(),
+          name: PairsPlayerSetupWidget.routeName,
+          path: PairsPlayerSetupWidget.routePath,
+          builder: (context, params) => PairsPlayerSetupWidget(),
+        ),
+        FFRoute(
+          name: WordScreenWidget.routeName,
+          path: WordScreenWidget.routePath,
+          builder: (context, params) => WordScreenWidget(),
+        ),
+        FFRoute(
+          name: IndividualPlayerSetupWidget.routeName,
+          path: IndividualPlayerSetupWidget.routePath,
+          builder: (context, params) => IndividualPlayerSetupWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

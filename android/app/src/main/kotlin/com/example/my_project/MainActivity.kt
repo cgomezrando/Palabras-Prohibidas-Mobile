@@ -1,4 +1,4 @@
-package com.cgr.triviamastermobile
+package com.cgr.PalabrasProhibidasMobile
 
 import io.flutter.embedding.android.FlutterActivity
 
